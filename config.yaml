@@ -1,0 +1,230 @@
+---
+imports:
+    - path: https://storage.googleapis.com/rs-gdm-stl-master/cloudsql_instance_v1/cloudsql_instance_v1.py
+      name: cloudsql_instance_v1.py
+    - path: https://storage.googleapis.com/rs-gdm-stl-master/constants_v1/constants_v1.py
+      name: constants_v1.py
+
+# Constants #######################################################
+
+resources:
+  - type: constants_v1.py
+    name: se-constants
+    properties:
+      region: &REGION us-central1
+
+# Disks ###########################################################
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot1-NAT
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-standard
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-boot2-NAT
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-b
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-b/diskTypes/pd-standard
+
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot-dev
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-data1-dev
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk03-usc-data2-dev
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-b
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-b/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot-stage
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-data1-stage
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk03-usc-data2-stage
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-b
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-b/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot-bastion
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-standard
+
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot-jenkins
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-data-jenkins
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 250
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot-NFS
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-data-NFS
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 500
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk01-usc-boot-magento
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-data1-magento
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk03-usc-data2-magento
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-b
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-b/diskTypes/pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys-dsk02-usc-data1-magento
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 100
+       zone: us-central1-a
+       sourceImage: projects/centos-cloud/global/images/family/centos-7
+       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+
+# Cloud SQL ##################################################
+
+    - type: cloudsql_instance_v1.py
+      name: biys-prod-sql01
+      properties:
+         region: us-central
+         settings:
+           tier: db-n1-standard-2
+           dataDiskType: PD_HDD
+           dataDiskSizeGb: 250
+           locationPreference:
+             zone: us-central1-a
+           databaseVersion: MYSQL_5_6
+           backendType: SECOND_GEN  
+           instanceType: CLOUD_SQL_INSTANCE
+           failoverReplica:
+           name: biys-prod-sql01-frep01
+           available: true
+
+# Storage bucket ##############################################
+
+    - type: bucket_v1.py
+      name: Backup
+      properties:
+         location: US
+         storageClass: MULTI_REGIONAL
+
