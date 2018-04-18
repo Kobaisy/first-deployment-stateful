@@ -12,7 +12,9 @@ resources:
     name: se-constants
     properties:
       region: &REGION us-central1
-
+      zone1: &ZONE1 us-central1-a
+      zone2: &ZONE2 us-central1-b
+      sourceImage: &SOURCEIMAGE projects/centos-cloud/global/images/family/centos-7
 # Disks ###########################################################
 
   - type: compute.v1.disk
@@ -21,9 +23,8 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-standard
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE  
 
 
   - type: compute.v1.disk
@@ -32,9 +33,8 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-b
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-b/diskTypes/pd-standard
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE 
 
 
   - type: compute.v1.disk
@@ -43,9 +43,9 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 100
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -54,9 +54,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 100
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -65,9 +65,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 100
-       zone: us-central1-b
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-b/diskTypes/pd-ssd
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -76,9 +76,9 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -87,9 +87,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 100
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -98,9 +98,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 100
-       zone: us-central1-b
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-b/diskTypes/pd-ssd
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -109,10 +109,8 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-standard
-
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
 
   - type: compute.v1.disk
     name: biys-dsk01-usc-boot-jenkins
@@ -120,9 +118,9 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -131,9 +129,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 250
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -142,9 +140,9 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -153,9 +151,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 500
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -164,9 +162,9 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 60
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -175,9 +173,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 100
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -186,9 +184,9 @@ resources:
        boot: false
        autodelete: false
        sizeGB: 100
-       zone: us-central1-b
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-b/diskTypes/pd-ssd
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 
   - type: compute.v1.disk
@@ -197,22 +195,22 @@ resources:
        boot: true
        autodelete: false
        sizeGB: 100
-       zone: us-central1-a
-       sourceImage: projects/centos-cloud/global/images/family/centos-7
-       type:  project/zones/us-central1-a/diskTypes/pd-ssd
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 # Cloud SQL ##################################################
 
     - type: cloudsql_instance_v1.py
       name: biys-prod-sql01
       properties:
-         region: us-central
+         region: *REGION
          settings:
            tier: db-n1-standard-2
            dataDiskType: PD_HDD
            dataDiskSizeGb: 250
            locationPreference:
-             zone: us-central1-a
+             zone: *ZONE1
            databaseVersion: MYSQL_5_6
            backendType: SECOND_GEN  
            instanceType: CLOUD_SQL_INSTANCE
