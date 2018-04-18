@@ -15,6 +15,7 @@ resources:
       zone1: &ZONE1 us-central1-a
       zone2: &ZONE2 us-central1-b
       sourceImage: &SOURCEIMAGE projects/centos-cloud/global/images/family/centos-7
+      cloudSQL: &CLOUDSQL biys-prod-sql01-tmp
 # Disks ###########################################################
 
   - type: compute.v1.disk
@@ -202,7 +203,7 @@ resources:
 # Cloud SQL ##################################################
 
     - type: cloudsql_instance_v1.py
-      name: biys-prod-sql01
+      name: *CLOUDSQL
       properties:
          region: *REGION
          settings:
