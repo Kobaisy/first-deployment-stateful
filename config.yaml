@@ -19,7 +19,7 @@ resources:
 # Disks ###########################################################
 
   - type: compute.v1.disk
-    name: biys-dsk01-usc-boot1-NAT
+    name: biys_dsk01_usc_boot1_NAT
     properties: 
        boot: true
        autodelete: false
@@ -29,7 +29,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk02-usc-boot2-NAT
+    name: biys_dsk02_usc_boot2_NAT
     properties: 
        boot: true
        autodelete: false
@@ -39,7 +39,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk01-usc-boot-dev
+    name: biys_dsk01_usc_boot_dev
     properties: 
        boot: true
        autodelete: false
@@ -50,7 +50,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk02-usc-data1-dev
+    name: biys_dsk02_usc_data1_dev
     properties: 
        boot: false
        autodelete: false
@@ -61,40 +61,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk03-usc-data2-dev
-    properties: 
-       boot: false
-       autodelete: false
-       sizeGB: 100
-       zone: *ZONE2
-       sourceImage: *SOURCEIMAGE
-       type: pd-ssd
-
-
-  - type: compute.v1.disk
-    name: biys-dsk01-usc-boot-stage
-    properties: 
-       boot: true
-       autodelete: false
-       sizeGB: 60
-       zone: *ZONE1
-       sourceImage: *SOURCEIMAGE
-       type: pd-ssd
-
-
-  - type: compute.v1.disk
-    name: biys-dsk02-usc-data1-stage
-    properties: 
-       boot: false
-       autodelete: false
-       sizeGB: 100
-       zone: *ZONE1
-       sourceImage: *SOURCEIMAGE
-       type: pd-ssd
-
-
-  - type: compute.v1.disk
-    name: biys-dsk03-usc-data2-stage
+    name: biys_dsk03_usc_data2_dev
     properties: 
        boot: false
        autodelete: false
@@ -105,16 +72,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk01-usc-boot-bastion
-    properties: 
-       boot: true
-       autodelete: false
-       sizeGB: 60
-       zone: *ZONE1
-       sourceImage: *SOURCEIMAGE 
-
-  - type: compute.v1.disk
-    name: biys-dsk01-usc-boot-jenkins
+    name: biys_dsk01_usc_boot_stage
     properties: 
        boot: true
        autodelete: false
@@ -125,7 +83,49 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk02-usc-data-jenkins
+    name: biys_dsk02_usc_data1_stage
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk03_usc_data2_stage
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_bastion
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_jenkins
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_data_jenkins
     properties: 
        boot: false
        autodelete: false
@@ -136,7 +136,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk01-usc-boot-NFS
+    name: biys_dsk01_usc_boot_NFS
     properties: 
        boot: true
        autodelete: false
@@ -147,7 +147,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk02-usc-data-NFS
+    name: biys_dsk02_usc_data_NFS
     properties: 
        boot: false
        autodelete: false
@@ -158,7 +158,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk01-usc-boot-magento
+    name: biys_dsk01_usc_boot_magento
     properties: 
        boot: true
        autodelete: false
@@ -169,7 +169,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk02-usc-data1-magento
+    name: biys_dsk02_usc_data1_magento
     properties: 
        boot: false
        autodelete: false
@@ -180,7 +180,7 @@ resources:
 
 
   - type: compute.v1.disk
-    name: biys-dsk03-usc-data2-magento
+    name: biys_dsk03_usc_data2_magento
     properties: 
        boot: false
        autodelete: false
@@ -190,6 +190,26 @@ resources:
        type: pd-ssd
 
 
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot1_redis
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk03_usc_boot2_redis
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
 
 # Cloud SQL ##################################################
 
