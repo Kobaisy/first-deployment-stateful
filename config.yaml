@@ -190,15 +190,6 @@ resources:
        type: pd-ssd
 
 
-  - type: compute.v1.disk
-    name: biys-dsk02-usc-data1-magento
-    properties: 
-       boot: true
-       autodelete: false
-       sizeGB: 100
-       zone: *ZONE1
-       sourceImage: *SOURCEIMAGE 
-       type: pd-ssd
 
 # Cloud SQL ##################################################
 
