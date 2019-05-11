@@ -1,0 +1,240 @@
+---
+imports:
+    - path: https://storage.googleapis.com/rs-gdm-stl-master/cloudsql_instance_v1/cloudsql_instance_v1.py
+      name: cloudsql_instance_v1.py
+    - path: https://storage.googleapis.com/rs-gdm-stl-master/constants_v1/constants_v1.py
+      name: constants_v1.py
+
+# Constants #######################################################
+
+resources:
+  - type: constants_v1.py
+    name: se-constants
+    properties:
+      region: &REGION us-central1
+      zone1: &ZONE1 us-central1-a
+      zone2: &ZONE2 us-central1-b
+      sourceImage: &SOURCEIMAGE projects/centos-cloud/global/images/family/centos-7
+      cloudSQL: &CLOUDSQL biys-prod-sql01-tmp
+# Disks ###########################################################
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot1_NAT
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE  
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_boot2_NAT
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE 
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_dev
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_data1_dev
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk03_usc_data2_dev
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_stage
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_data1_stage
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk03_usc_data2_stage
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_bastion
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_jenkins
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_data_jenkins
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 250
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_NFS
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_data_NFS
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 500
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot_magento
+    properties: 
+       boot: true
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk02_usc_data1_magento
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk03_usc_data2_magento
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 100
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk01_usc_boot1_redis
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE1
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+
+  - type: compute.v1.disk
+    name: biys_dsk03_usc_boot2_redis
+    properties: 
+       boot: false
+       autodelete: false
+       sizeGB: 60
+       zone: *ZONE2
+       sourceImage: *SOURCEIMAGE 
+       type: pd-ssd
+
+# Cloud SQL ##################################################
+
+    - type: cloudsql_instance_v1.py
+      name: *CLOUDSQL
+      properties:
+         region: *REGION
+         settings:
+           tier: db-n1-standard-2
+           dataDiskType: PD_HDD
+           dataDiskSizeGb: 250
+           locationPreference:
+             zone: *ZONE1
+           databaseVersion: MYSQL_5_6
+           backendType: SECOND_GEN  
+           instanceType: CLOUD_SQL_INSTANCE
+           failoverReplica:
+           name: biys-prod-sql01-frep01
+           available: true
+
+# Storage bucket ##############################################
+
+    - type: bucket_v1.py
+      name: Backup
+      properties:
+         location: US
+         storageClass: MULTI_REGIONAL
+
